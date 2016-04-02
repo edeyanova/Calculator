@@ -1,10 +1,3 @@
-/*
- * Server.cpp
- *
- *  Created on: Feb 2, 2016
- *      Author: visteon
- */
-
 #include <iostream>
 #include <unistd.h>
 #include <stdlib.h>
@@ -14,7 +7,6 @@
 
 void *taskRead(void * data)
 {
-//	std::cout<<"thread read "<<std::endl;
 	Server *server =(Server*)data;
 
 	while (1)
@@ -33,7 +25,6 @@ void *taskRead(void * data)
 
 void *taskSumSub(void * data)
 {
-//	std::cout<<"thread sum sub "<<std::endl;
 	Server * server = (Server*)data;
 
 	while (1)
@@ -49,13 +40,11 @@ void *taskSumSub(void * data)
 		}
 		sleep(5);
 	}
-//	std::cout<<"After taskSumSub method "<<std::endl;
 	return NULL;
 }
 
 void *taskMulDiv(void * data)
 {
-//	std::cout<<"thread task Mul Div "<<std::endl;
 	Server * server = (Server*)data;
 	while (1)
 	{
@@ -71,7 +60,6 @@ void *taskMulDiv(void * data)
 		}
 		sleep(5);
 	}
-//	std::cout<<"After taskMulDiv method "<<std::endl;
 	return NULL;
 }
 
@@ -111,29 +99,24 @@ void Server::stop()
 
 void Server::distributeData(Libcommon::CalculationValues * values)
 {
-//	std::cout<<"Inside distributeData "<<std::endl;
 
 	if (values->operation == 1 || values->operation == 2)
 	{
 		insertDataForSumSub(values);
-//		std::cout<<"After sum sub inserting"<<std::endl;
 	}
 	else if (values->operation == 3 || values->operation == 4)
 	{
 		insertDataForMulDiv(values);
-//		std::cout<<"After mul div inserting"<<std::endl;
 	}
 }
 
 Libcommon::CalculationValues * Server::read()
 {
 	Libcommon::CalculationValues * values = NULL;
-//	std::cout<<"server read  before memoryRead "<<std::endl;
 	values =  memory->memoryRead();
 
 	if (values != NULL)
 	{
-//		std::cout<<"Values "<<values<<std::endl;
 
 		if (values->whoWrites == Libcommon::CLIENT && values->memoryStatus == Libcommon::FULL)
 		{
@@ -154,10 +137,7 @@ bool Server::write(Libcommon::CalculationValues * newValues)
 	std::string s = memory->createId();
 
 	newValues->whoWrites = Libcommon::SERVER;
-//	newValues->memoryStatus = Libcommon::FULL;
 
-//	std::cout<<"New Values in write: "<<newValues<<std::endl;
-//	std::cout<<"before memory write in server "<<std::endl;
 	bool result;
 	do
 	{
