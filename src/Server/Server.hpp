@@ -1,10 +1,3 @@
-/*
- * Server.h
- *
- *  Created on: Feb 2, 2016
- *      Author: visteon
- */
-
 #ifndef SERVER_HPP_
 #define SERVER_HPP_
 #include "../libcommon/Libcommon.hpp"
@@ -27,7 +20,6 @@ public:
 	void stop();
 
 	Libcommon::CalculationValues * read();
-//	void writeServer(Libcommon::CalculationValues * newValues);
 	bool write(Libcommon::CalculationValues * newValues);
 	void printServer();
 
