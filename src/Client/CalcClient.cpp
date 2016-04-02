@@ -127,7 +127,6 @@ bool menu(Libcommon::CalculationValues * values)
 
 void * threadReadHandler(void * data)
 {
-//	std::cout<<"Inside threadRead "<<std::endl;
 	Client * client = (Client*)data;
 
 	while (1)
@@ -136,7 +135,6 @@ void * threadReadHandler(void * data)
 		Libcommon::CalculationValues * values = client->readCalculationValues();
 		if(NULL != values)
 		{
-//			std::cout<<"Inside while, before printCalculationValues "<<std::endl;
 			client->printCalculationValues(*values);
 
 			if(values->operation == 1)
@@ -152,7 +150,6 @@ void * threadReadHandler(void * data)
 
 void * threadWriteHandler(void * data)
 {
-//	std::cout<<"Inside threadWrite "<<std::endl;
 	Client * client = (Client*)data;
 	Libcommon::CalculationValues * values = NULL;
 
@@ -163,11 +160,8 @@ void * threadWriteHandler(void * data)
 		if (! queueData.empty())
 		{
 			values = (Libcommon::CalculationValues *)queueData.front();
-//			client->printCalculationValues(*values);
-//			client->printMemory();
 
 			client->writeCalculationValues(values);
-//			std::cout<<"After writing calculation values. "<<std::endl;
 
 			client->printMemory();
 
