@@ -1,10 +1,3 @@
-/*
- * Protocol.cpp
- *
- *  Created on: Feb 16, 2016
- *      Author: visteon
- */
-
 #include "Protocol.h"
 
 Protocol::Protocol()
@@ -13,8 +6,6 @@ Protocol::Protocol()
 , second(6)
 , result(0)
 , clientID("")
-//, isLocked(LOCKED)
-//, whoWrites(WHO_WRITES_CLIENT)
 {
 	isLocked = LOCKED;
 	whoWrites = WHO_WRITES_CLIENT;
