@@ -1,10 +1,3 @@
-/*
- * Libcommon.cpp
- *
- *  Created on: Feb 2, 2016
- *      Author: visteon
- */
-
 #include "Libcommon.hpp"
 #include <iostream>
 #include <syscall.h>
@@ -106,7 +99,6 @@ void Libcommon::printCalculationValues(const Libcommon::CalculationValues & valu
 bool Libcommon::memoryWrite(Libcommon::CalculationValues * values)
 {
 	bool result = false;
-//	std::cout<<"Inside memoryWrite"<<std::endl;
 	getAccess(sharedMemory->accessToMemory);
 
 	if (sharedMemory->memoryStatus == Libcommon::EMPTY)
@@ -136,14 +128,12 @@ bool Libcommon::memoryWrite(Libcommon::CalculationValues * values)
 
 Libcommon::CalculationValues * Libcommon::memoryRead()
 {
-//	std::cout<<"memoryRead  "<<std::endl;
 	getAccess(sharedMemory->accessToMemory);
 
 	Libcommon::CalculationValues * tempRead = NULL;
 
 	if (sharedMemory->memoryStatus == Libcommon::FULL)
 	{
-//		std::cout<<"memoryRead full "<<std::endl;
 		tempRead = new CalculationValues();
 
 		tempRead->operation = sharedMemory->operation;
@@ -190,9 +180,7 @@ int Libcommon::getValueSem(sem_t &sem)
 
 void Libcommon::getAccess(sem_t &sem)
 {
-//	std::cout<<"getValueSem getacc " << getValueSem(sem) << std::endl;
 	sem_wait(&sem);
-//	std::cout<<"After wait "<<std::endl;
 }
 
 void Libcommon::releaseAccess(sem_t &sem)
@@ -247,7 +235,6 @@ int Libcommon::attachSegment()
 		initSem(sharedMemory->accessToMemory);
 		std::cout<<"needInit "<< std::endl;
 	}
-//	std::cout<<"getValueSem attach " <<getValueSem(sharedMemory->accessToMemory)<< std::endl;
 
 	return 0;
 }
