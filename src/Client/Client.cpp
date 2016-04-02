@@ -1,10 +1,3 @@
-/*
- * Client.cpp
- *
- *  Created on: Feb 2, 2016
- *      Author: visteon
- */
-
 #include "Client.hpp"
 #include <iostream>
 #include <unistd.h>
@@ -25,14 +18,11 @@ Client::~Client()
 
 bool Client::writeCalculationValues(Libcommon::CalculationValues * newValues)
 {
-//	std::cout<<"inside client writeCalculationValues"<<std::endl;
 	newValues->clientID[memory->getSizeOfId()]=0;
 	memcpy(newValues->clientID,id.c_str(), memory->getSizeOfId()-1);
 
 	newValues->whoWrites = Libcommon::CLIENT;
-//	newValues->memoryStatus = Libcommon::FULL;
 
-//	std::cout<<"Before memoryWrite in client"<<std::endl;
 	std::cout<<"Memory status: "<<newValues->memoryStatus<<std::endl;
 	std::cout<<"Who writes: "<<newValues->whoWrites<<std::endl;
 
@@ -56,9 +46,7 @@ Libcommon::CalculationValues * Client::readCalculationValues()
 	{
 		if (values->clientID == id && values->whoWrites == Libcommon::SERVER)
 		{
-//			std::cout<<"Before setMemoryEmpty in Client"<<std::endl;
 			memory->setMemoryEmpty();
-//			std::cout<<"Memory status "<<values->memoryStatus<<std::endl;
 		}
 		else
 		{
